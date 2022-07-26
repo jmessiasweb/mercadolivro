@@ -1,4 +1,4 @@
-package com.mercadolivro
+package br.com.mercadolivro
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

@@ -1,4 +1,4 @@
-package com.mercadolivro
+package br.com.mercadolivro
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
