@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.12.RELEASE"
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
+	kotlin("plugin.jpa") version "1.4.21"
 }
 
 group = "br.com.mercadolivro"
@@ -22,6 +23,10 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	testImplementation("org.flywaydb:flyway-core:7.7.0")
+	
+	runtimeOnly("com.h2database:h2")
 }
 
 tasks.withType<KotlinCompile> {
