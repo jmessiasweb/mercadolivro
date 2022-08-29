@@ -3,6 +3,7 @@ package br.com.mercadolivro.service
 import br.com.mercadolivro.enums.BookStatus
 import br.com.mercadolivro.repositoy.BookRepository
 import com.mercadolivro.model.BookModel
+import com.mercadolivro.model.CustomerModel
 import org.springframework.stereotype.Service
 
 @Service
@@ -32,7 +33,20 @@ class BookService(
 
         book.status = BookStatus.CANSELADO
 
+        update(book)
+    }
+
+    fun update(book: BookModel) {
         bookRepository.save(book)
+
+
+    }
+    fun deleteByCustomer(customer: CustomerModel) {
+        val books = bookRepository.findByCustomer(customer)
+        for (book in books ) {
+            book.status = BookStatus.DELETADO
+        }
+        bookRepository.saveAll(books)
     }
 
 }

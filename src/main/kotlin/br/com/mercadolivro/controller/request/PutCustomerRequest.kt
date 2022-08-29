@@ -1,4 +1,4 @@
-package br.com.mercadolivro.request
+package br.com.mercadolivro.controller.request
 
 data class PutCustomerRequest(
 
