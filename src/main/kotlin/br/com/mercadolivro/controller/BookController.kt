@@ -1,8 +1,8 @@
 package br.com.mercadolivro.controller
 
 import br.com.mercadolivro.extesion.toBookModel
-import br.com.mercadolivro.request.PostBookRequest
-import br.com.mercadolivro.request.PutBookRequest
+import br.com.mercadolivro.controller.request.PostBookRequest
+import br.com.mercadolivro.controller.request.PutBookRequest
 import br.com.mercadolivro.service.BookService
 import br.com.mercadolivro.service.CustomerService
 import com.mercadolivro.model.BookModel
@@ -18,7 +18,7 @@ class BookController(val bookService: BookService,
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody request: PostBookRequest) {
-        val customer = customerService.getById((request.customerId))
+        val customer = customerService.findById((request.customerId))
         bookService.create(request.toBookModel(customer))
 
     }
@@ -48,5 +48,8 @@ class BookController(val bookService: BookService,
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun update(@PathVariable id: Int, @RequestBody book: PutBookRequest)
+    fun update(@PathVariable id: Int, @RequestBody book: PutBookRequest) {
+        val bookSaved = bookService.findById(id)
+        bookService.update(book.toBookModel(bookSaved))
+    }
 }
