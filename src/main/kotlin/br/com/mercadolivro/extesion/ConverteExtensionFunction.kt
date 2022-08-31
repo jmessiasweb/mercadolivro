@@ -13,7 +13,7 @@ fun PostCustumerRequest.toCustomerModel(): CustomerModel {
     return  CustomerModel(
         name = this.name,
         email = this.email,
-        status = CustomerStatus.ATIVO
+        status = CustomerStatus.ATIVO,
     )
 }
 
