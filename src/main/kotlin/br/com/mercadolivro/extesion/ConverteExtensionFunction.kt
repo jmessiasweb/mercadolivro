@@ -1,16 +1,18 @@
 package br.com.mercadolivro.extesion
 
-import br.com.mercadolivro.enums.BookStatus
 import br.com.mercadolivro.controller.request.PostBookRequest
 import br.com.mercadolivro.controller.request.PutBookRequest
 import br.com.mercadolivro.controller.request.PutCustomerRequest
+import br.com.mercadolivro.controller.response.BookResponse
+import br.com.mercadolivro.controller.response.CustomerResponse
+import br.com.mercadolivro.enums.BookStatus
 import br.com.mercadolivro.enums.CustomerStatus
 import com.mercadolivro.model.BookModel
 import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.request.PostCustumerRequest
 
 fun PostCustumerRequest.toCustomerModel(): CustomerModel {
-    return  CustomerModel(
+    return CustomerModel(
         name = this.name,
         email = this.email,
         status = CustomerStatus.ATIVO,
@@ -49,4 +51,28 @@ fun PutBookRequest.toBookModel(previousValue: BookModel): BookModel {
 
 
     )
+}
+
+fun CustomerModel.toResponse(): CustomerResponse {
+    return CustomerResponse(
+        id = this.id,
+        name = this.name,
+        email = this.email,
+        status = this.status
+
+    )
+
+}
+
+
+fun BookModel.toResponse(): BookResponse {
+    return BookResponse(
+        id = this.id,
+        name = this.name,
+        price = this.price,
+        customer = this.customer,
+        status = this.status
+
+    )
+
 }

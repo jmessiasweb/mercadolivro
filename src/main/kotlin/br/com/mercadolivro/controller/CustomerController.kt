@@ -1,9 +1,10 @@
 package com.mercadolivro.controller
 
-import br.com.mercadolivro.extesion.toCustomerModel
 import br.com.mercadolivro.controller.request.PutCustomerRequest
+import br.com.mercadolivro.controller.response.CustomerResponse
+import br.com.mercadolivro.extesion.toCustomerModel
+import br.com.mercadolivro.extesion.toResponse
 import br.com.mercadolivro.service.CustomerService
-import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.request.PostCustumerRequest
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -14,8 +15,8 @@ import org.springframework.web.bind.annotation.*
 class CustomerController(val customerService: CustomerService) {
 
     @GetMapping
-    fun getCustomer(@RequestParam name: String?):List<CustomerModel> {
-        return customerService.getAll(name)
+    fun getAll(@RequestParam name: String?):List<CustomerResponse> {
+        return customerService.getAll(name).map { it.toResponse() }
     }
 
     @PostMapping
@@ -25,8 +26,8 @@ class CustomerController(val customerService: CustomerService) {
     }
 
     @GetMapping("/{id}")
-    fun getCustomer(@PathVariable id: Int): CustomerModel {
-        return customerService.findById(id)
+    fun getCustomer(@PathVariable id: Int): CustomerResponse {
+        return customerService.findById(id).toResponse()
 
     }
 
