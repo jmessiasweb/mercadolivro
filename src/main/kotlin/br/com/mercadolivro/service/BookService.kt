@@ -1,6 +1,7 @@
 package br.com.mercadolivro.service
 
 import br.com.mercadolivro.enums.BookStatus
+import br.com.mercadolivro.exeption.NotFoundException
 import br.com.mercadolivro.repositoy.BookRepository
 import com.mercadolivro.model.BookModel
 import com.mercadolivro.model.CustomerModel
@@ -9,10 +10,9 @@ import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
-class BookService(
-    val bookRepository: BookRepository
+class BookService(val bookRepository: BookRepository) {
 
-) {
+
     fun create(book: BookModel) {
         bookRepository.save(book)
     }
@@ -27,7 +27,7 @@ class BookService(
     }
 
     fun findById(id: Int): BookModel {
-        return bookRepository.findById(id).orElseThrow{ Exception("Não existe este recurso") }
+        return bookRepository.findById(id).orElseThrow{ NotFoundException("Book [${id}] not exists", "ML-0001 ") }
     }
 
     fun delete(id: Int) {
