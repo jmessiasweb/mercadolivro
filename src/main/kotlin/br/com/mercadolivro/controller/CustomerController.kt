@@ -1,27 +1,30 @@
-package com.mercadolivro.controller
+package br.com.mercadolivro.controller
 
+import br.com.mercadolivro.controller.request.PostCustumerRequest
 import br.com.mercadolivro.controller.request.PutCustomerRequest
 import br.com.mercadolivro.controller.response.CustomerResponse
 import br.com.mercadolivro.extesion.toCustomerModel
 import br.com.mercadolivro.extesion.toResponse
 import br.com.mercadolivro.service.CustomerService
-import com.mercadolivro.request.PostCustumerRequest
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
+import javax.validation.Valid
+
+
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("customer")
 class CustomerController(val customerService: CustomerService) {
 
     @GetMapping
-    fun getAll(@RequestParam name: String?):List<CustomerResponse> {
+    fun getAll(@RequestParam name: String?): List<CustomerResponse> {
         return customerService.getAll(name).map { it.toResponse() }
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody customer: PostCustumerRequest) {
+    fun create(@RequestBody @Valid customer: PostCustumerRequest) {
         return customerService.create(customer.toCustomerModel())
     }
 
@@ -33,7 +36,7 @@ class CustomerController(val customerService: CustomerService) {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun update(@PathVariable id: Int, @RequestBody customer: PutCustomerRequest) {
+    fun update(@PathVariable id: Int, @RequestBody @Valid customer: PutCustomerRequest) {
         val customerSaved = customerService.findById(id)
         customerService.update(customer.toCustomerModel(customerSaved))
 

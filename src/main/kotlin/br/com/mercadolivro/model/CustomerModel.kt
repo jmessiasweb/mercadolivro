@@ -1,4 +1,4 @@
-package com.mercadolivro.model
+package br.com.mercadolivro.model
 
 import br.com.mercadolivro.enums.CustomerStatus
 import javax.persistence.*

@@ -1,9 +1,9 @@
 package br.com.mercadolivro.controller
 
-import br.com.mercadolivro.extesion.toBookModel
 import br.com.mercadolivro.controller.request.PostBookRequest
 import br.com.mercadolivro.controller.request.PutBookRequest
 import br.com.mercadolivro.controller.response.BookResponse
+import br.com.mercadolivro.extesion.toBookModel
 import br.com.mercadolivro.extesion.toResponse
 import br.com.mercadolivro.service.BookService
 import br.com.mercadolivro.service.CustomerService
@@ -12,16 +12,17 @@ import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 
 @RestController
-@RequestMapping("/book")
+@RequestMapping("book")
 class BookController(val bookService: BookService,
                      val customerService: CustomerService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody request: PostBookRequest) {
+    fun create(@RequestBody @Valid request: PostBookRequest) {
         val customer = customerService.findById((request.customerId))
         bookService.create(request.toBookModel(customer))
 
