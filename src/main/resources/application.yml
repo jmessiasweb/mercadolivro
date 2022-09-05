@@ -4,10 +4,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-
-datasources:
+  datasources:
   default:
-    url: jdbc:postgresql://localhost:5432/mercadolivrobd
+    url: jdbc:postgresql://localhost:5432/mercadolivro?createDatabaseIsNotExist=true
     driverClassName: org.postgresql.Driver
     username: postgres
     password: 1234

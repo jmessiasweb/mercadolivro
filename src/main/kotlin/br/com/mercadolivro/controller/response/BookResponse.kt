@@ -1,7 +1,7 @@
 package br.com.mercadolivro.controller.response
 
 import br.com.mercadolivro.enums.BookStatus
-import com.mercadolivro.model.CustomerModel
+import br.com.mercadolivro.model.CustomerModel
 import java.math.BigDecimal
 
 data class BookResponse (

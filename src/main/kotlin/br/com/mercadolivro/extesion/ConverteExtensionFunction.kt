@@ -7,9 +7,9 @@ import br.com.mercadolivro.controller.response.BookResponse
 import br.com.mercadolivro.controller.response.CustomerResponse
 import br.com.mercadolivro.enums.BookStatus
 import br.com.mercadolivro.enums.CustomerStatus
-import com.mercadolivro.model.BookModel
-import com.mercadolivro.model.CustomerModel
-import com.mercadolivro.request.PostCustumerRequest
+import br.com.mercadolivro.model.BookModel
+import br.com.mercadolivro.model.CustomerModel
+import br.com.mercadolivro.controller.request.PostCustumerRequest
 
 fun PostCustumerRequest.toCustomerModel(): CustomerModel {
     return CustomerModel(
