@@ -41,4 +41,9 @@ class CustomerService(val customerRepository: CustomerRepository,
 
         customerRepository.save(customer)
     }
+
+    fun emailAvailable(email: String): Boolean {
+       return !customerRepository.existsByEmail(email)
+
+    }
 }
