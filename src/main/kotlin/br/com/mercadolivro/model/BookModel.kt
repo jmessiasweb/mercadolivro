@@ -34,13 +34,11 @@ data class BookModel(
             field = value
         }
 
-    constructor(
-        id: Int? = null,
-        name: String,
-        price: BigDecimal,
-        customer: CustomerModel? = null,
-        status: BookStatus?
-    ) : this(id, name, price, customer) {
+    constructor(id: Int? = null,
+                name: String,
+                price: BigDecimal,
+                customer: CustomerModel? = null,
+                status: BookStatus?) : this(id, name, price, customer) {
         this.status = status
 
     }

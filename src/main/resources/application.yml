@@ -1,10 +1,13 @@
 server:
   port: 8081
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   jpa:
     hibernate:
       ddl-auto: update
-  datasources:
+datasources:
   default:
     url: jdbc:postgresql://localhost:5432/mercadolivro?createDatabaseIsNotExist=true
     driverClassName: org.postgresql.Driver
@@ -13,3 +16,5 @@ spring:
     schema-generate: update
     dialect: POSTGRES
 jpa.default.properties.hibernate.hbm2ddl.auto: update
+
+

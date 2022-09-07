@@ -8,7 +8,6 @@ import br.com.mercadolivro.extesion.toResponse
 import br.com.mercadolivro.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
-
 import javax.validation.Valid
 
 
