@@ -1,0 +1,33 @@
+package br.com.mercadolivro.model
+
+import java.math.BigDecimal
+import java.time.LocalDateTime
+import javax.persistence.*
+
+@Entity(name = "purchase")
+data class PurchaseModel(
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Int? = null,
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    val customer: CustomerModel,
+
+    @ManyToOne
+    @JoinTable(name = "purchase_book",
+               joinColumns = [JoinColumn(name = "book_id")],
+               inverseJoinColumns = [JoinColumn(name = "book_id")])
+    val book: List<BookModel>,
+
+    @Column
+    val nfe: String? = null,
+
+    @Column
+    val price: BigDecimal,
+
+    @Column(name = "created_at")
+    val createAt: LocalDateTime
+
+)
