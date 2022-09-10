@@ -2,7 +2,8 @@ package br.com.mercadolivro.service
 
 import br.com.mercadolivro.enums.CustomerStatus
 import br.com.mercadolivro.enums.Errors
-import br.com.mercadolivro.exeption.NotFoundException
+import br.com.mercadolivro.enums.Profile
+import br.com.mercadolivro.exception.NotFoundException
 import br.com.mercadolivro.repositoy.CustomerRepository
 import br.com.mercadolivro.model.CustomerModel
 import org.springframework.stereotype.Service
@@ -19,7 +20,10 @@ class CustomerService(val customerRepository: CustomerRepository,
     }
 
     fun create(customer: CustomerModel) {
-        customerRepository.save(customer)
+        val customerCopy = customer.copy(
+            roles = setOf(Profile.CUSTOMER)
+        )
+        customerRepository.save(customerCopy)
     }
 
     fun findById(id: Int): CustomerModel {

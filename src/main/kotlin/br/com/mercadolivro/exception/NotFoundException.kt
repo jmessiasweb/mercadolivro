@@ -1,4 +1,4 @@
-package br.com.mercadolivro.exeption
+package br.com.mercadolivro.exception
 
 class NotFoundException(override val message: String, val errorCode: String): Exception() {
 }

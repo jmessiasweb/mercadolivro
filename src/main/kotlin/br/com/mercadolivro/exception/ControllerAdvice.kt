@@ -1,4 +1,4 @@
-package br.com.mercadolivro.exeption
+package br.com.mercadolivro.exception
 
 import br.com.mercadolivro.controller.response.ErroResponse
 import br.com.mercadolivro.controller.response.FielErrorResponse
@@ -9,7 +9,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.context.request.WebRequest
-import java.lang.Error
 
 @ControllerAdvice
 class ControllerAdvice {

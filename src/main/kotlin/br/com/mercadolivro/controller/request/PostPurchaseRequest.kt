@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAlias
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Positive
 
-data class PostPurchaseResquest(
+data class PostPurchaseRequest(
 
     @field:NotNull
     @field:Positive

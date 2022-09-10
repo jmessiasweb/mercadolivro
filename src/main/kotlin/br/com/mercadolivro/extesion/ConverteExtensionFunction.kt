@@ -9,13 +9,14 @@ import br.com.mercadolivro.enums.BookStatus
 import br.com.mercadolivro.enums.CustomerStatus
 import br.com.mercadolivro.model.BookModel
 import br.com.mercadolivro.model.CustomerModel
-import br.com.mercadolivro.controller.request.PostCustumerRequest
+import br.com.mercadolivro.controller.request.PostCustomerRequest
 
-fun PostCustumerRequest.toCustomerModel(): CustomerModel {
+fun PostCustomerRequest.toCustomerModel(): CustomerModel {
     return CustomerModel(
         name = this.name,
         email = this.email,
         status = CustomerStatus.ATIVO,
+        password = this.password
     )
 }
 
@@ -24,7 +25,8 @@ fun PutCustomerRequest.toCustomerModel(previousValue: CustomerModel): CustomerMo
         id = previousValue.id,
         name = this.name,
         email = this.email,
-        status = previousValue.status
+        status = previousValue.status,
+        password = previousValue.password
 
     )
 
