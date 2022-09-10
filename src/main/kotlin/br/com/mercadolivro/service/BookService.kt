@@ -2,7 +2,7 @@ package br.com.mercadolivro.service
 
 import br.com.mercadolivro.enums.BookStatus
 import br.com.mercadolivro.enums.Errors
-import br.com.mercadolivro.exeption.NotFoundException
+import br.com.mercadolivro.exception.NotFoundException
 import br.com.mercadolivro.repositoy.BookRepository
 import br.com.mercadolivro.model.BookModel
 import br.com.mercadolivro.model.CustomerModel
@@ -54,6 +54,13 @@ class BookService(val bookRepository: BookRepository) {
 
     fun findAllByIds(bookIds: Set<Int>): List<BookModel> {
        return bookRepository.findAllById(bookIds).toList()
+    }
+
+    fun purchase(books: MutableList<BookModel>) {
+        books.map {
+            it.status = BookStatus.VENDIDO
+        }
+        bookRepository.saveAll(books)
     }
 
 }

@@ -1,6 +1,6 @@
 package br.com.mercadolivro.controller
 
-import br.com.mercadolivro.controller.request.PostCustumerRequest
+import br.com.mercadolivro.controller.request.PostCustomerRequest
 import br.com.mercadolivro.controller.request.PutCustomerRequest
 import br.com.mercadolivro.controller.response.CustomerResponse
 import br.com.mercadolivro.extesion.toCustomerModel
@@ -23,7 +23,7 @@ class CustomerController(val customerService: CustomerService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody @Valid customer: PostCustumerRequest) {
+    fun create(@RequestBody @Valid customer: PostCustomerRequest) {
         customerService.create(customer.toCustomerModel())
     }
 
@@ -42,8 +42,9 @@ class CustomerController(val customerService: CustomerService) {
     }
 
     @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     fun delete(@PathVariable id: Int) {
-        return customerService.delete(id)
+        customerService.delete(id)
 
     }
 

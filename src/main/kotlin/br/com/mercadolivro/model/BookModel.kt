@@ -2,7 +2,7 @@ package br.com.mercadolivro.model
 
 import br.com.mercadolivro.enums.BookStatus
 import br.com.mercadolivro.enums.Errors
-import br.com.mercadolivro.exeption.BadRequestException
+import br.com.mercadolivro.exception.BadRequestException
 import java.math.BigDecimal
 import javax.persistence.*
 
