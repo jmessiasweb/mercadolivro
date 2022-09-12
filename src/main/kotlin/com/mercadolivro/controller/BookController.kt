@@ -17,8 +17,8 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("book")
-class BookController(val bookService: BookService,
-                     val customerService: CustomerService) {
+class BookController(private val bookService: BookService,
+                     private val customerService: CustomerService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
