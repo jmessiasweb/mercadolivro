@@ -10,11 +10,9 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
-
-
 @RestController
 @RequestMapping("customer")
-class CustomerController(val customerService: CustomerService) {
+class CustomerController(private val customerService: CustomerService) {
 
     @GetMapping
     fun getAll(@RequestParam name: String?): List<CustomerResponse> {
