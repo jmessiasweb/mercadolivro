@@ -1,11 +1,11 @@
-package br.com.mercadolivro.controller
+package com.mercadolivro.controller
 
-import br.com.mercadolivro.controller.request.PostCustomerRequest
-import br.com.mercadolivro.controller.request.PutCustomerRequest
-import br.com.mercadolivro.controller.response.CustomerResponse
-import br.com.mercadolivro.extesion.toCustomerModel
-import br.com.mercadolivro.extesion.toResponse
-import br.com.mercadolivro.service.CustomerService
+import com.mercadolivro.controller.request.PostCustomerRequest
+import com.mercadolivro.controller.request.PutCustomerRequest
+import com.mercadolivro.controller.response.CustomerResponse
+import com.mercadolivro.extesion.toCustomerModel
+import com.mercadolivro.extesion.toResponse
+import com.mercadolivro.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid

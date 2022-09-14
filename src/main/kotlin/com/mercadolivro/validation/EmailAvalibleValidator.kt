@@ -1,6 +1,6 @@
-package br.com.mercadolivro.validation
+package com.mercadolivro.validation
 
-import br.com.mercadolivro.service.CustomerService
+import com.mercadolivro.service.CustomerService
 import javax.validation.ConstraintValidator
 import javax.validation.ConstraintValidatorContext
 

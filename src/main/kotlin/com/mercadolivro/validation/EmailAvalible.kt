@@ -1,4 +1,4 @@
-package br.com.mercadolivro.validation
+package com.mercadolivro.validation
 
 import javax.validation.Constraint
 import javax.validation.Payload

@@ -1,4 +1,4 @@
-package br.com.mercadolivro.controller.response
+package com.mercadolivro.controller.response
 
 data class FielErrorResponse (
     var message: String,

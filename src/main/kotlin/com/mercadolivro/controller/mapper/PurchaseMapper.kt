@@ -1,17 +1,18 @@
-package br.com.mercadolivro.controller.mapper
+package com.mercadolivro.controller.mapper
 
-import br.com.mercadolivro.controller.request.PostPurchaseRequest
-import br.com.mercadolivro.model.PurchaseModel
-import br.com.mercadolivro.service.BookService
-import br.com.mercadolivro.service.CustomerService
+import com.mercadolivro.controller.request.PostPurchaseRequest
+import com.mercadolivro.model.PurchaseModel
+import com.mercadolivro.service.BookService
+import com.mercadolivro.service.CustomerService
 import org.springframework.stereotype.Component
 
 
 @Component
 class PurchaseMapper(private val bookService: BookService,
-                     private val customerService: CustomerService) {
+                     private val customerService: CustomerService
+) {
 
-    fun toModel(request: PostPurchaseRequest): PurchaseModel{
+    fun toModel(request: PostPurchaseRequest): PurchaseModel {
         val customer = customerService.findById(request.customerId)
         val books = bookService.findAllByIds(request.bookIds)
 

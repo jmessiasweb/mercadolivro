@@ -1,6 +1,6 @@
-package br.com.mercadolivro.controller.request
+package com.mercadolivro.controller.request
 
-import br.com.mercadolivro.validation.EmailAvalible
+import com.mercadolivro.validation.EmailAvalible
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotEmpty
 

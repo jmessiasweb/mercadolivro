@@ -1,8 +1,8 @@
-package br.com.mercadolivro.service
+package com.mercadolivro.service
 
-import br.com.mercadolivro.events.PurchaseEvent
-import br.com.mercadolivro.model.PurchaseModel
-import br.com.mercadolivro.repositoy.PurchaseRepository
+import com.mercadolivro.events.PurchaseEvent
+import com.mercadolivro.model.PurchaseModel
+import com.mercadolivro.repositoy.PurchaseRepository
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 

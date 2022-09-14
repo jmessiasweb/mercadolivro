@@ -1,8 +1,8 @@
-package br.com.mercadolivro.exception
+package com.mercadolivro.exception
 
-import br.com.mercadolivro.controller.response.ErroResponse
-import br.com.mercadolivro.controller.response.FielErrorResponse
-import br.com.mercadolivro.enums.Errors
+import com.mercadolivro.controller.response.ErroResponse
+import com.mercadolivro.controller.response.FielErrorResponse
+import com.mercadolivro.enums.Errors
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException

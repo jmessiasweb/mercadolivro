@@ -1,17 +1,17 @@
-package br.com.mercadolivro.service
+package com.mercadolivro.service
 
-import br.com.mercadolivro.enums.CustomerStatus
-import br.com.mercadolivro.enums.Errors
-import br.com.mercadolivro.enums.Profile
-import br.com.mercadolivro.exception.NotFoundException
-import br.com.mercadolivro.model.CustomerModel
-import br.com.mercadolivro.repositoy.CustomerRepository
+import com.mercadolivro.enums.CustomerStatus
+import com.mercadolivro.enums.Errors
+import com.mercadolivro.enums.Profile
+import com.mercadolivro.exception.NotFoundException
+import com.mercadolivro.model.CustomerModel
+import com.mercadolivro.repositoy.CustomerRepository
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
 class CustomerService(private val customerRepository: CustomerRepository,
-private val bookService: BookService, private val bCrypt: BCryptPasswordEncoder) {
+                      private val bookService: BookService, private val bCrypt: BCryptPasswordEncoder) {
 
     fun getAll(name: String?): List<CustomerModel> {
         name?.let {
