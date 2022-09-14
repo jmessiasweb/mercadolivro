@@ -1,6 +1,6 @@
-package br.com.mercadolivro.controller.response
+package com.mercadolivro.controller.response
 
-import br.com.mercadolivro.enums.CustomerStatus
+import com.mercadolivro.enums.CustomerStatus
 
 data class CustomerResponse(
     val id: Int? = null,

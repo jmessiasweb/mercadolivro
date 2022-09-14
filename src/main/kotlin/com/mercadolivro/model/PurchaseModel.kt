@@ -1,4 +1,4 @@
-package br.com.mercadolivro.model
+package com.mercadolivro.model
 
 import java.math.BigDecimal
 import java.time.LocalDateTime
@@ -11,11 +11,11 @@ data class PurchaseModel(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
 
-    @ManyToOne
+//    @ManyToOne
     @JoinColumn(name = "customer_id")
     val customer: CustomerModel,
 
-    @ManyToOne
+//    @ManyToOne
     @JoinTable(name = "purchase_book",
                joinColumns = [JoinColumn(name = "purchase_id")],
                inverseJoinColumns = [JoinColumn(name = "book_id")])

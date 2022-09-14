@@ -1,6 +1,6 @@
-package br.com.mercadolivro.events
+package com.mercadolivro.events
 
-import br.com.mercadolivro.model.PurchaseModel
+import com.mercadolivro.model.PurchaseModel
 import org.springframework.context.ApplicationEvent
 
 class PurchaseEvent (

@@ -1,8 +1,8 @@
-package br.com.mercadolivro.repositoy
+package com.mercadolivro.repositoy
 
-import br.com.mercadolivro.enums.BookStatus
-import br.com.mercadolivro.model.BookModel
-import br.com.mercadolivro.model.CustomerModel
+import com.mercadolivro.enums.BookStatus
+import com.mercadolivro.model.BookModel
+import com.mercadolivro.model.CustomerModel
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository

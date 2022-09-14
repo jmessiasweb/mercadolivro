@@ -1,8 +1,9 @@
-package br.com.mercadolivro.model
+package com.mercadolivro.model
 
-import br.com.mercadolivro.enums.BookStatus
-import br.com.mercadolivro.enums.Errors
-import br.com.mercadolivro.exception.BadRequestException
+import com.mercadolivro.enums.BookStatus
+import com.mercadolivro.enums.Errors
+import com.mercadolivro.exception.BadRequestException
+import org.hibernate.Hibernate
 import java.math.BigDecimal
 import javax.persistence.*
 
