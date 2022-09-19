@@ -34,7 +34,7 @@ class BookService(private val bookRepository: BookRepository) {
     fun delete(id: Int) {
         val book = findById(id)
 
-//        book.status = BookStatus.CANSELADO
+        book.status = BookStatus.CANSELADO
 
         update(book)
     }
@@ -47,7 +47,7 @@ class BookService(private val bookRepository: BookRepository) {
     fun deleteByCustomer(customer: CustomerModel) {
         val books = bookRepository.findByCustomer(customer)
         for (book in books ) {
-//            book.status = BookStatus.DELETADO
+            book.status = BookStatus.DELETADO
         }
         bookRepository.saveAll(books)
     }
@@ -58,7 +58,7 @@ class BookService(private val bookRepository: BookRepository) {
 
     fun purchase(books: MutableList<BookModel>) {
         books.map {
-//            it.status = BookStatus.VENDIDO
+            it.status = BookStatus.VENDIDO
         }
         bookRepository.saveAll(books)
     }
