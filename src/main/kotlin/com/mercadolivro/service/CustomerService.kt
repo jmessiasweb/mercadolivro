@@ -10,8 +10,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
-class CustomerService(private val customerRepository: CustomerRepository,
-                      private val bookService: BookService, private val bCrypt: BCryptPasswordEncoder) {
+class CustomerService(
+    private val customerRepository: CustomerRepository,
+    private val bookService: BookService,
+    private val bCrypt: BCryptPasswordEncoder
+) {
 
     fun getAll(name: String?): List<CustomerModel> {
         name?.let {
@@ -29,18 +32,19 @@ class CustomerService(private val customerRepository: CustomerRepository,
     }
 
     fun findById(id: Int): CustomerModel {
-        return  customerRepository.findById(id).orElseThrow{ NotFoundException(Errors.ML201.message.format(id), Errors.ML201.code) }
+        return customerRepository.findById(id).orElseThrow{ NotFoundException(Errors.ML201.message.format(id), Errors.ML201.code) }
     }
 
     fun update(customer: CustomerModel) {
-        if (!customerRepository.existsById(customer.id!!)) {
+        if(!customerRepository.existsById(customer.id!!)){
             throw Exception()
         }
+
         customerRepository.save(customer)
     }
 
     fun delete(id: Int) {
-      val customer = findById(id)
+        val customer = findById(id)
         bookService.deleteByCustomer(customer)
 
         customer.status = CustomerStatus.INATIVO
@@ -49,7 +53,7 @@ class CustomerService(private val customerRepository: CustomerRepository,
     }
 
     fun emailAvailable(email: String): Boolean {
-       return !customerRepository.existsByEmail(email)
-
+        return !customerRepository.existsByEmail(email)
     }
+
 }

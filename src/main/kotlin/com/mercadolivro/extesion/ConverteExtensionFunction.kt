@@ -1,18 +1,17 @@
-package com.mercadolivro.extesion
+package com.mercadolivro.extension
 
 import com.mercadolivro.controller.request.PostBookRequest
+import com.mercadolivro.controller.request.PostCustomerRequest
 import com.mercadolivro.controller.request.PutBookRequest
 import com.mercadolivro.controller.request.PutCustomerRequest
 import com.mercadolivro.controller.response.BookResponse
 import com.mercadolivro.controller.response.CustomerResponse
+import com.mercadolivro.controller.response.PageResponse
 import com.mercadolivro.enums.BookStatus
 import com.mercadolivro.enums.CustomerStatus
 import com.mercadolivro.model.BookModel
 import com.mercadolivro.model.CustomerModel
-import com.mercadolivro.controller.request.PostCustomerRequest
-import com.mercadolivro.controller.response.PageResponse
 import org.springframework.data.domain.Page
-
 
 fun PostCustomerRequest.toCustomerModel(): CustomerModel {
     return CustomerModel(
@@ -30,9 +29,7 @@ fun PutCustomerRequest.toCustomerModel(previousValue: CustomerModel): CustomerMo
         email = this.email,
         status = previousValue.status,
         password = previousValue.password
-
     )
-
 }
 
 fun PostBookRequest.toBookModel(customer: CustomerModel): BookModel {
@@ -41,20 +38,16 @@ fun PostBookRequest.toBookModel(customer: CustomerModel): BookModel {
         price = this.price,
         status = BookStatus.ATIVO,
         customer = customer
-
     )
-
 }
 
 fun PutBookRequest.toBookModel(previousValue: BookModel): BookModel {
     return BookModel(
         id = previousValue.id,
-        name = this.nome ?: previousValue.name,
+        name = this.name ?: previousValue.name,
         price = this.price ?: previousValue.price,
         status = previousValue.status,
         customer = previousValue.customer
-
-
     )
 }
 
@@ -64,11 +57,8 @@ fun CustomerModel.toResponse(): CustomerResponse {
         name = this.name,
         email = this.email,
         status = this.status
-
     )
-
 }
-
 
 fun BookModel.toResponse(): BookResponse {
     return BookResponse(
@@ -77,9 +67,7 @@ fun BookModel.toResponse(): BookResponse {
         price = this.price,
         customer = this.customer,
         status = this.status
-
     )
-
 }
 
 fun <T> Page<T>.toPageResponse(): PageResponse<T> {
@@ -87,7 +75,5 @@ fun <T> Page<T>.toPageResponse(): PageResponse<T> {
         this.content,
         this.number,
         this.totalElements,
-        this.totalPages
-    )
-
+        this.totalPages)
 }

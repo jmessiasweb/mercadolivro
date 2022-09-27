@@ -1,6 +1,5 @@
 package com.mercadolivro.events.listener
 
-
 import com.mercadolivro.events.PurchaseEvent
 import com.mercadolivro.service.PurchaseService
 import org.springframework.context.event.EventListener
@@ -9,7 +8,9 @@ import org.springframework.stereotype.Component
 import java.util.*
 
 @Component
-class GenerateNfeListener(private val purchaseService: PurchaseService) {
+class GenerateNfeListener(
+    private val purchaseService: PurchaseService
+) {
 
     @Async
     @EventListener
@@ -18,6 +19,6 @@ class GenerateNfeListener(private val purchaseService: PurchaseService) {
         val nfe = UUID.randomUUID().toString()
         val purchaseModel = purchaseEvent.purchaseModel.copy(nfe = nfe)
         purchaseService.update(purchaseModel)
-
     }
+
 }

@@ -25,7 +25,7 @@ class AuthenticationFilter(
             val authToken = UsernamePasswordAuthenticationToken(id, loginRequest.password)
             return authenticationManager.authenticate(authToken)
         } catch (ex: Exception) {
-            throw AuthenticationException("falha ao autenticar", "999")
+            throw AuthenticationException("Falha ao autenticar", "999")
         }
     }
 
@@ -34,4 +34,5 @@ class AuthenticationFilter(
         val token = jwtUtil.generateToken(id)
         response.addHeader("Authorization", "Bearer $token")
     }
+
 }

@@ -18,7 +18,7 @@ class AuthorizationFilter(
 
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, chain: FilterChain) {
         val authorization = request.getHeader("Authorization")
-        if (authorization != null && authorization.startsWith("Bearer")) {
+        if(authorization != null && authorization.startsWith("Bearer ")) {
             val auth = getAuthentication(authorization.split(" ")[1])
             SecurityContextHolder.getContext().authentication = auth
         }
@@ -26,13 +26,12 @@ class AuthorizationFilter(
     }
 
     private fun getAuthentication(token: String): UsernamePasswordAuthenticationToken {
-        if (jwtUtil.isValidToken(token)){
-            throw AuthenticationException("Token invalido", "999")
+        if(!jwtUtil.isValidToken(token)) {
+            throw AuthenticationException("Token inválido", "999")
         }
         val subject = jwtUtil.getSubject(token)
         val customer = userDetails.loadUserByUsername(subject)
         return UsernamePasswordAuthenticationToken(customer, null, customer.authorities)
     }
-
 
 }

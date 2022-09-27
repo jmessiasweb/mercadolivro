@@ -1,7 +1,6 @@
 package com.mercadolivro.controller.response
 
-data class FielErrorResponse (
-    var message: String,
+data class FieldErrorResponse(
+    var messsage: String,
     var field: String
-
 )

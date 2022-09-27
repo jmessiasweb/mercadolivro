@@ -11,14 +11,14 @@ data class PurchaseModel(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
 
-//    @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "customer_id")
     val customer: CustomerModel,
 
-//    @ManyToOne
+    @ManyToMany
     @JoinTable(name = "purchase_book",
-               joinColumns = [JoinColumn(name = "purchase_id")],
-               inverseJoinColumns = [JoinColumn(name = "book_id")])
+        joinColumns = [JoinColumn(name = "purchase_id")],
+        inverseJoinColumns = [JoinColumn(name = "book_id")])
     val books: MutableList<BookModel>,
 
     @Column
@@ -28,6 +28,5 @@ data class PurchaseModel(
     val price: BigDecimal,
 
     @Column(name = "created_at")
-    val createAt: LocalDateTime = LocalDateTime.now()
-
+    val createdAt: LocalDateTime = LocalDateTime.now()
 )

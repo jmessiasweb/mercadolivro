@@ -9,7 +9,7 @@ data class CustomerModel(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int? = null,
+    var id: Int? = null,
 
     @Column
     var name: String,
@@ -24,9 +24,9 @@ data class CustomerModel(
     @Column
     val password: String,
 
-    @Column(name = "roles")
+    @Column(name = "role")
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Role::class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "customer_role", joinColumns = [JoinColumn(name = "customer_id")])
+    @CollectionTable(name = "customer_roles", joinColumns = [JoinColumn(name = "customer_id")])
     var roles: Set<Role> = setOf()
 )
