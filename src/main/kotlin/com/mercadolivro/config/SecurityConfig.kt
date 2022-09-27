@@ -18,9 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import org.springframework.security.web.AuthenticationEntryPoint
 import org.springframework.web.cors.CorsConfiguration
-import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import org.springframework.web.filter.CorsFilter
 
@@ -32,17 +30,16 @@ class SecurityConfig(
     private val userDetails: UserDetailsCustomService,
     private val jwtUtil: JwtUtil,
     private val customEntryPoint: CustomAuthenticationEntryPoint
-): WebSecurityConfigurerAdapter() {
+) : WebSecurityConfigurerAdapter() {
 
-    private  val PUBLIC_MATCHERS = arrayOf<String>()
+    private val PUBLIC_MATCHERS = arrayOf<String>()
 
     private val PUBLIC_POST_MATCHERS = arrayOf(
         "/customer"
     )
 
-    private val ADMIN_MATCHAERS = arrayOf(
+    private val ADMIN_MATCHERS = arrayOf(
         "/admin/**"
-
     )
 
     override fun configure(auth: AuthenticationManagerBuilder) {
@@ -54,7 +51,7 @@ class SecurityConfig(
         http.authorizeRequests()
             .antMatchers(*PUBLIC_MATCHERS).permitAll()
             .antMatchers(HttpMethod.POST, *PUBLIC_POST_MATCHERS).permitAll()
-            .antMatchers(*ADMIN_MATCHAERS).hasAnyAuthority(Role.ADMIN.description)
+            .antMatchers(*ADMIN_MATCHERS).hasAuthority(Role.ADMIN.description)
             .anyRequest().authenticated()
         http.addFilter(AuthenticationFilter(authenticationManager(), customerRepository, jwtUtil))
         http.addFilter(AuthorizationFilter(authenticationManager(), userDetails, jwtUtil))
@@ -63,8 +60,8 @@ class SecurityConfig(
     }
 
     override fun configure(web: WebSecurity) {
-        web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
-            "/configuration/**", "swagger-ui.htm", "/webjars/**")
+        web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/**",
+            "/swagger-ui.html", "/webjars/**")
     }
 
     @Bean
@@ -72,17 +69,16 @@ class SecurityConfig(
         val source = UrlBasedCorsConfigurationSource()
         val config = CorsConfiguration()
         config.allowCredentials = true
-        config.addAllowedOriginPattern("*")
+        config.addAllowedOrigin("*")
         config.addAllowedHeader("*")
         config.addAllowedMethod("*")
         source.registerCorsConfiguration("/**", config)
         return CorsFilter(source)
-
     }
 
     @Bean
     fun bCryptPasswordEncoder(): BCryptPasswordEncoder {
         return BCryptPasswordEncoder()
-
     }
+
 }

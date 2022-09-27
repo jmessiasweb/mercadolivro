@@ -6,10 +6,10 @@ import com.mercadolivro.service.BookService
 import com.mercadolivro.service.CustomerService
 import org.springframework.stereotype.Component
 
-
 @Component
-class PurchaseMapper(private val bookService: BookService,
-                     private val customerService: CustomerService
+class PurchaseMapper(
+    private val bookService: BookService,
+    private val customerService: CustomerService
 ) {
 
     fun toModel(request: PostPurchaseRequest): PurchaseModel {
@@ -20,7 +20,6 @@ class PurchaseMapper(private val bookService: BookService,
             customer = customer,
             books = books.toMutableList(),
             price = books.sumOf { it.price }
-
         )
     }
 

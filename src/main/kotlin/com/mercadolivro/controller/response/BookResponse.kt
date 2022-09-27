@@ -4,9 +4,8 @@ import com.mercadolivro.enums.BookStatus
 import com.mercadolivro.model.CustomerModel
 import java.math.BigDecimal
 
-data class BookResponse (
-
-    val id: Int? = null,
+data class BookResponse(
+    var id: Int? = null,
 
     var name: String,
 
@@ -15,5 +14,4 @@ data class BookResponse (
     var customer: CustomerModel? = null,
 
     var status: BookStatus? = null
-
-  )
+)

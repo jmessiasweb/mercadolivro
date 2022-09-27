@@ -3,7 +3,6 @@ package com.mercadolivro.model
 import com.mercadolivro.enums.BookStatus
 import com.mercadolivro.enums.Errors
 import com.mercadolivro.exception.BadRequestException
-import org.hibernate.Hibernate
 import java.math.BigDecimal
 import javax.persistence.*
 
@@ -12,7 +11,7 @@ data class BookModel(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int? = null,
+    var id: Int? = null,
 
     @Column
     var name: String,
@@ -20,16 +19,17 @@ data class BookModel(
     @Column
     var price: BigDecimal,
 
-//    @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "customer_id")
     var customer: CustomerModel? = null
 
 ) {
+
     @Column
     @Enumerated(EnumType.STRING)
     var status: BookStatus? = null
         set(value) {
-            if (field == BookStatus.CANSELADO || field == BookStatus.DELETADO)
+            if(field == BookStatus.CANCELADO || field == BookStatus.DELETADO)
                 throw BadRequestException(Errors.ML102.message.format(field), Errors.ML102.code)
 
             field = value
@@ -39,9 +39,8 @@ data class BookModel(
                 name: String,
                 price: BigDecimal,
                 customer: CustomerModel? = null,
-                status: BookStatus?) : this(id, name, price, customer) {
+                status: BookStatus?): this(id, name, price, customer) {
         this.status = status
-
     }
 
 }
