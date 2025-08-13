@@ -29,10 +29,10 @@ jobs:
             gradle-${{ runner.os }}
 
       # 3 - Configurar JDK 17
-      - name: Configurar JDK 17
+      - name: Configurar JDK 11
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '11'
           distribution: 'temurin'
 
       # 4 - Garantir permissão para o gradlew
