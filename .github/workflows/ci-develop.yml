@@ -1,0 +1,32 @@
+name: CI/CD - Develop
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build e Testes
+        run: |
+          ./mvnw clean install
+
+      - name: Deploy em Homologação
+        if: github.ref == 'refs/heads/develop'
+        run: |
+          echo "Fazer deploy em ambiente de homologação..."
