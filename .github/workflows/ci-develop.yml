@@ -17,41 +17,51 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v4
 
-      # 2 - Configurar JDK 17
+      # 2 - Cache do Gradle
+      - name: Cache Gradle
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/build.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}
+
+      # 3 - Configurar JDK 17
       - name: Configurar JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: gradle
 
-      # 3 - Garantir permissão para o gradlew
+      # 4 - Garantir permissão para o gradlew
       - name: Dar permissão de execução ao gradlew
         run: chmod +x gradlew
 
-      # 4 - Build e Testes
+      # 5 - Build e Testes
       - name: Build e Testes
         run: ./gradlew clean build
 
-      # 5 - Build da imagem Docker
+      # 6 - Build da imagem Docker
       - name: Build Docker Image
         run: |
           docker build -t myapp-develop:latest .
 
-      # 6 - Login no Docker Hub (usar secrets DOCKER_USERNAME e DOCKER_PASSWORD)
+      # 7 - Login no Docker Hub
       - name: Docker Login
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # 7 - Push da imagem para o Docker Hub
+      # 8 - Push da imagem Docker
       - name: Push Docker Image
         run: |
           docker tag myapp-develop:latest my-dockerhub-username/myapp-develop:latest
           docker push my-dockerhub-username/myapp-develop:latest
 
-      # 8 - Deploy (exemplo: apenas mensagem, aqui você colocaria o deploy real)
+      # 9 - Deploy em Homologação
       - name: Deploy em Homologação
         if: github.ref == 'refs/heads/develop'
         run: |
